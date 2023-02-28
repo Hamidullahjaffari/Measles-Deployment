@@ -1,0 +1,60 @@
+
+
+{% extends 'main.html'%}
+
+
+
+{% block content %}
+<div class="container">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Measles Diagnosis System</h1>
+      <p class="lead">This is an application where you can upload your photo and check whether you are infected to the measles or not. basically, you can check three class of diseases here..</p>
+    </div>
+  </div>
+ <!--
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+       
+      </div>
+    </div>
+  </nav>
+  -->
+
+  <div class="card col-md-6" style="margin-top: 40px;">
+    <div class="card-header bg-primary " style="padding: 10px;"> <h1>Select the Image Here</h1></div>
+    <div class="card-body " style="padding: 10px ;">
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="pwd" style="font-size:25px;">Photo:</label>
+          <input "  onchange="loadFile(event)" type="file" accept="image/gif, image/jpeg, image/png"class="form-control" placeholder="Choose the Image" id="file" name ='image'>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" name ='submit'>Submit</button>
+      </form>
+  </div>
+  </div>
+ 
+  <div class="card col-md-6">
+    <div><img id ='output' ></div>
+    <p class="text-primary" style="font-size: 50px;">Your disease is :  {{prediction}}</p>
+
+  </div>
+
+</div>
+
+<script>
+  var loadFile = function(event) {
+    var image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+  };
+  </script>
+  
+{% endblock %}
